@@ -7,13 +7,18 @@ app.set("view engine", "hbs");
 app.use(express.static(__dirname + '/public'));
 
 app.get("/", (req, res) => {
-  res.send("<h1>HogeHoge</h1>");
+  res.render("about.hbs", {
+    pageTitle: "Home page",
+    content: "This is Home.hbs",
+    currentYear: new Date().getFullYear()
+  })
 });
 
-app.get("/about", (req, res) => {
-  res.send({
-    name: "太郎",
-    age: 20
-  });
+app.get("/about", (req, res) => { 
+  res.render("about.hbs", {
+    pageTitle: "About page",
+    content: "コンテンツ",
+    currentYear: new Date().getFullYear()
+  })
 });
 app.listen(3000);
